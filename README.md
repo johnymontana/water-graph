@@ -27,7 +27,7 @@ CREATE CONSTRAINT FOR (b:Basin) REQUIRE b.HYBAS_ID IS UNIQUE
 ```
 
 ```Cypher
-CALL apoc.load.json("file:///basins_na_lev12_centroids.geojson") YIELD value
+CALL apoc.load.json("https://raw.githubusercontent.com/johnymontana/water-graph/main/data/hydrobasins/basins_na_lev6_centroids.geojson") YIELD value
 UNWIND value.features AS feat
 MERGE (b:Basin {HYBAS_ID: feat.properties.HYBAS_ID})
 SET b.location = point({latitude: feat.geometry.coordinates[1], longitude:feat.geometry.coordinates[0]}),
